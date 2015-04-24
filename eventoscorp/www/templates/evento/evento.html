@@ -1,0 +1,40 @@
+<ion-view view-title="Detalhe Evento">
+    <ion-content>
+        <ion-item>
+        <h1>{{evento.descricao}}</h1>
+
+        <p>Local: {{evento.local}}<br/>
+            Data: {{evento.data}} as {{evento.horario}}<br/>
+            Observação:{{evento.observacao}}
+        </p>
+        <div class="item item-divider">
+            Programação
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="programa in evento.programacao" class="item">
+                <h4>{{programa.descricao}}</h4>
+                <p>{{programa.data}} as {{programa.hora}}</p>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider">
+            Recursos
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="recurso in evento.recursos" class="item">
+                <h4>{{recurso.descricao}}</h4>
+                <p>Qtd: {{recurso.quantidade}}
+                        <br/> Disponivel:
+                                <span ng-show="recurso.disponivel"> <i class="ion-checkmark-round"></i></span>
+                                <span ng-hide="recurso.disponivel"> <i class="ion-close"></i></span>
+                        <br/>Responsável:  {{recurso.responsavel}} </p>
+            </ion-item>
+        </ion-list>
+        </ion-item>
+
+    </ion-content>
+    <ion-footer-bar>
+        <button class="button button-positive">Nova Programação</button>
+        <div class="title"></div>
+        <button class="button button-positive">Novo Recurso</button>
+    </ion-footer-bar>
+</ion-view>

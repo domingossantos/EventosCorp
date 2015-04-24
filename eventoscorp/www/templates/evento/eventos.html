@@ -1,0 +1,16 @@
+<ion-view view-title="Eventos">
+    <ion-content scrollbar-y="cor   ">
+        <ion-list>
+            <ion-item ng-repeat="evento in eventos" href="#/app/eventos/{{evento.id}}" class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+                <h2>{{evento.descricao}}</h2>
+                <p>Local: {{evento.local}}<br/>Data: {{evento.data}} as {{evento.horario}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer">
+        <button class="button  button-positive ">Novo Evento</button>
+        <div class="title"></div>
+        <button class="button button-positive" ng-click="onPesquisarEvento()">Pesquisar</button>
+    </div>
+</ion-view>
