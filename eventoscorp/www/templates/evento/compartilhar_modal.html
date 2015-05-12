@@ -1,0 +1,24 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Compartilhar Agenda</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="fechaCompartilhar()">Fechar</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="fechaCompartilhar()">
+            <div class="list">
+                <li class="item item-toggle" ng-repeat="rede in redesSociais">
+                    {{rede.servico}}
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </div>
+            <button type="submit" class="button button-block button-positive">Compartilhar</button>
+        </form>
+    </ion-content>
+</ion-modal-view>

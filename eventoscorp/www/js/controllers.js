@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -30,25 +30,12 @@ angular.module('starter.controllers', ['ionic'])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
+
+    $location.path('/eventos');
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-
-})
-
-.controller('EventoCtrl',['$scope','$stateParams',function($scope,$stateParams){
+.controller('EventoCtrl',['$scope','$stateParams','$location','$ionicModal',function($scope, $stateParams, $location, $ionicModal){
   $scope.eventos = [
     {id:1,
       descricao:'Inalguração do Hospital HPSM II',
@@ -107,12 +94,36 @@ angular.module('starter.controllers', ['ionic'])
       ];
 
 
+        $scope.recursos = [
+            {recurso:'Mesa de Som'},
+            {recurso:'Microfone'},
+            {recurso:'Datashow'},
+            {recurso:'Mesa'},
+            {recurso:'Cadeira'},
+            {recurso:'Iluminação'},
+            {recurso:'Palco'},
+            {recurso:'Pupito'}
+        ];
 
-    ;
+      $scope.tipoEventos = [
+        {tipo:'Inalguração'},
+        {tipo:'Festa'},
+        {tipo:'Premiação'}
+      ];
+
+      $scope.redesSociais = [
+        {servico:'Facebook',url:'@fulano'},
+        {servico:'Twitter',url:'@fulano'},
+        {servico:'Linkedin',url:'@fulano'}
+      ];
+
+        $scope.evento = {id : null,
+            descricao : null,
+            data : null,horario:null,local:null,
+            observacao : null,dataCadastro:null,dataAlteracao:null,status:'N',
+            ocorrencias:null,recursos:null,programacao:null};
 
 
-
-        $scope.evento = null;
 
         if($stateParams.eventoId != null){
             $scope.evento = $scope.eventos[$stateParams.eventoId - 1];
@@ -120,7 +131,74 @@ angular.module('starter.controllers', ['ionic'])
 
 
       $scope.onPesquisarEvento = function(){
-        $stateParams.path('/pesquisaEvento');
+        $location.path('/app/pesquisaEvento');
+      }
+
+      $scope.onNovoEvento = function(){
+          $location.path('/app/novoevento');
+      }
+
+      $scope.onSalvarEvento = function(){
+          alert('Salvar');
+        $scope.evento.id = 3;
+        $scope.evento.dataCadastro = '26/04/2015 16:00:00';
+
+        $scope.eventos.push($scope.evento);
+        $location.path('/eventos');
+      }
+
+
+        $ionicModal.fromTemplateUrl('templates/evento/programacao_modal_form.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalProgramacao = modal;
+        });
+
+        // Open the login modal
+        $scope.programacaoForm = function() {
+            $scope.modalProgramacao.show();
+        };
+
+        $scope.fechaProgramacao = function(){
+            $scope.modalProgramacao.hide();
+        }
+
+        $ionicModal.fromTemplateUrl('templates/evento/recurso_modal_form.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalRecurso = modal;
+        });
+
+        // Open the login modal
+        $scope.recursoForm = function() {
+            $scope.modalRecurso.show();
+        };
+
+        $scope.fechaRecurso = function(){
+            $scope.modalRecurso.hide();
+        }
+
+        $scope.convidadoLista = function(idEvento){
+          $location.path("/app/convidado-lista/"+idEvento);
+        }
+
+        $scope.compartilharLista = function(idEvento){
+          alert('Agenda compartilhada');
+        }
+
+      $ionicModal.fromTemplateUrl('templates/evento/compartilhar_modal.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modalCompartilhar = modal;
+      });
+
+      // Open the login modal
+      $scope.compartilharModal = function(idEvento) {
+        $scope.modalCompartilhar.show();
+      };
+
+      $scope.fechaCompartilhar = function(){
+        $scope.modalCompartilhar.hide();
       }
 
 }]);

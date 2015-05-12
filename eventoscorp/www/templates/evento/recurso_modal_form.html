@@ -1,0 +1,42 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Recurso</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="fechaRecurso()">Fechar</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="fechaRecurso()">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Recurso</span>
+                    <select>
+                        <option ng-repeat="res in recursos" >{{res.recurso}}</option>
+                    </select>
+                </label>
+
+
+                <label class="item item-input">
+                    <span class="input-label">Quantidade</span>
+                    <input type="number" min="1">
+                </label>
+                <label class="item item-checkboxt">
+                    <span class="checkbox">Disponivel</span>
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Responsável</span>
+                    <input type="text" >
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">Salvar</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

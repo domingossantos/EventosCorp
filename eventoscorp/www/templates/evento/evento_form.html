@@ -1,0 +1,39 @@
+<ion-view title="Novo Evento">
+    <ion-content>
+        <form>
+            <div class="list">
+                <div class="list">
+
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Tipo
+                        </div>
+                        <select>
+                            <option ng-repeat="tipo in tipoEventos">{{tipo.tipo}}</option>
+                        </select>
+                    </label>
+
+                </div>
+                <label class="item item-input">
+                    <input type="text" placeholder="Evento" ng-model="evento.descricao" required>
+                </label>
+                <label class="item item-input">
+                    <input type="date" placeholder="Data" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" required="required" maxlength="10">
+                </label>
+                <label class="item item-input">
+                    <input type="time" placeholder="Horário" required="required" maxlength="8" pattern="[0-9]{2}:[0-9]{2} [0-9]{2}$" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Local" required="required" maxlength="40">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Observação" required="required" maxlength="200" pattern="\w{3}" title="Informe pelo menos 3 caracteres"></textarea>
+                </label>
+            </div>
+
+        </form>
+        <div>
+            <button class="button button-positive button-block" ng-click="onSalvarEvento()" ">Salvar</button>
+        </div>
+    </ion-content>
+</ion-view>

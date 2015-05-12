@@ -1,0 +1,26 @@
+<ion-view view-title="Lista de Convidados">
+
+    <ion-content>
+        <ul class="list" ng-repeat="convidado in evento.convidados | filter:convidado.grupo">
+            <li class="item item-checkbox">
+                <label class="checkbox checkbox-positive">
+                    <input type="checkbox">
+                </label>
+                {{convidado.grupo}} -
+                {{convidado.nome}}
+            </li>
+
+        </ul>
+    </ion-content>
+    <div class="bar bar-footer">
+        <button class="button  button-positive" ng-click="onNovoEvento();">Add Convidado</button>
+        <div class="title">
+            <select ng-model="convidado.grupo">
+                <option value="">Todos</option>
+                <option value="Governo">Governo</option>
+                <option value="Liderança">Liderança</option>
+            </select>
+        </div>
+        <button class="button button-positive" ng-click="onPesquisarEvento()">Pesquisar</button>
+    </div>
+</ion-view>

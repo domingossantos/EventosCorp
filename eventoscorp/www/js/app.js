@@ -4,6 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
+
 angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
@@ -50,32 +52,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       })
 
-  .state('app.search', {
-    url: "/search",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/search.html"
-      }
-    }
-  })
-
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+      .state('app.novoevento', {
+        url: "/novoevento",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/evento/evento_form.html",
+            controller: 'EventoCtrl'
+          }
         }
-      }
-    })
+      })
+
+      .state('app.convidado-lista', {
+        url: "/convidado-lista/:eventoId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/evento/lista-convidados.html",
+            controller: 'EventoCtrl'
+          }
+        }
+      })
 
       .state('app.pesquisaEvento', {
         url: "/pesquisaEvento",
@@ -85,17 +80,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'EventoCtrl'
           }
         }
-      })
+      });
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/eventos');
 });
